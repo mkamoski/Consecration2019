@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Consecration2019"
+             x:Class="Consecration2019.MainPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+        <Label Text="Consecration 2019" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        <Button Text="Pick Your Start Day" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="PickStartDay_Clicked"></Button>
+        <!--
+        <Button Text="TestButton2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="TestButton2_Clicked"></Button>
+        <Button Text="TestButton3" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="TestButton3_Clicked"></Button>
+        -->
+    </StackLayout>
+
+</ContentPage>
