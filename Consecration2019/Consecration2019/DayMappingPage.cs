@@ -138,21 +138,60 @@ namespace Consecration2019
 
             Button myButton = (Button)sender;
             string myButtonText = myButton.Text;
-            string[] myButtonTextParts = myButtonText.Split(" ".ToCharArray());
+            string[] myButtonTextParts = myButtonText.Split(":".ToCharArray());
+
+            //myDayParts = { DAY-01 | DAY-02 | DAY-03 ... }
+
+            string[] myDayParts = (myButtonTextParts[0]).Trim().Split("-".ToCharArray());
+            string myDayNumberText = myDayParts[1].Trim();
+            
+            if (myDayNumberText.StartsWith("0"))
+            {
+                myDayNumberText = myDayNumberText.Substring(startIndex: 1);
+            }
+
+
             string myMonthAbbreviation = (myButtonTextParts[0] + string.Empty).Trim();
             int myMonthNumber = this.ConverterObject.ConvertToMonthByForce(myMonthAbbreviation);
 
-            string myDay = (myButtonTextParts[1] + string.Empty).Trim();
+            //string myDay = (myButtonTextParts[1] + string.Empty).Trim();
             int myDayNumber = int.MinValue;
 
-            if (!(int.TryParse(myDay, out myDayNumber)))
+            if (!(int.TryParse(myDayNumberText, out myDayNumber)))
             {
+                this.DisplayAlert("Warning", "Note (!(int.TryParse(myDayNumberText, out myDayNumber))) and myDayNumberText='" + myDayNumberText.ToString() + "' here.", "Close");
                 myDayNumber = Common.Helpers.Constants.DefaultDay;
             }
 
+            if (myDayNumber < Common.Helpers.Constants.DefaultDayMin || myDayNumber > Common.Helpers.Constants.DefaultDayMax)
+            {
+                this.DisplayAlert("Warning", "Note (myDayNumber < Common.Helpers.Constants.DefaultDayMin || myDayNumber > Common.Helpers.Constants.DefaultDayMax) and myDayNumber='" + myDayNumber.ToString() + "' here.", "Close");
+                myDayNumber = Common.Helpers.Constants.DefaultDay;
+            }
+
+            //Leftoff. Always showing 1 here. Need to pass start date to day page.
+
+            ContentPage myContentPage = null;
+
+            this.DisplayAlert("test", "myDayNumber.ToString()='" + myDayNumber.ToString() + "'", "close");
+
+
+
+            if (myDayNumber == 1)
+            {
+                myContentPage = new DayPage01();
+            }
+            else if (myDayNumber == 2)
+            {
+                myContentPage = new DayPage02();
+            }
+
+
+            Application.Current.MainPage = myContentPage;
+
             //this.DisplayAlert(title: "test alert", message: "Note myButtonTextParts[0]='" + myButtonTextParts[0] + "' and myButtonTextParts[1]='" + myButtonTextParts[1] + "' here.", cancel: "Close");
 
-            Application.Current.MainPage = new DayMappingPage(targetMonth: myMonthNumber, targetDay: myDayNumber);
+            //Application.Current.MainPage = new DayMappingPage(targetMonth: myMonthNumber, targetDay: myDayNumber);
         }
 
         private void HomeButton_Clicked(object sender, System.EventArgs e)

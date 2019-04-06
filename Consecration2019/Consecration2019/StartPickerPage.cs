@@ -19,14 +19,14 @@ namespace Consecration2019
 
             //Create the header.
             Label myHeaderLabel = new Label();
-            myHeaderLabel.Text = "Pick the start day for your Consecration.";
+            myHeaderLabel.Text = "Pick your start day.";
             myHeaderLabel.HorizontalOptions = LayoutOptions.Center;
             myHeaderLabel.VerticalOptions = LayoutOptions.CenterAndExpand;
             myStackLayout.Children.Add(myHeaderLabel);
 
             //Create the home button.
             Button myHomeButton = new Button();
-            myHomeButton.Text = "Go To Main Page";
+            myHomeButton.Text = "Go to the main page.";
             myHomeButton.Clicked += this.HomeButton_Clicked;
             myHomeButton.HorizontalOptions = LayoutOptions.CenterAndExpand;
             myHomeButton.VerticalOptions = LayoutOptions.CenterAndExpand;
@@ -100,10 +100,15 @@ namespace Consecration2019
             string[] myButtonTextParts = myButtonText.Split(" ".ToCharArray());
             string myMonthAbbreviation = (myButtonTextParts[0] + string.Empty).Trim();
             int myMonthNumber = this.ConverterObject.ConvertToMonthByForce(myMonthAbbreviation);
-            string myDay = (myButtonTextParts[1] + string.Empty).Trim();
+            string myDayText = (myButtonTextParts[1] + string.Empty).Trim();
             int myDayNumber = int.MinValue;
 
-            if (!(int.TryParse(myDay, out myDayNumber)))
+            if (!(int.TryParse(myDayText, out myDayNumber)))
+            {
+                myDayNumber = Common.Helpers.Constants.DefaultDay;
+            }
+
+            if (myDayNumber < Common.Helpers.Constants.DefaultDayMin || myDayNumber > Common.Helpers.Constants.DefaultDayMax)
             {
                 myDayNumber = Common.Helpers.Constants.DefaultDay;
             }

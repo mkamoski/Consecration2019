@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.netbrainer.Consecration2019.Android" android:installLocation="auto" android:versionCode="1903171541" android:versionName="1903171541">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.netbrainer.Consecration2019.Android" android:installLocation="auto" android:versionCode="1904052021" android:versionName="1904052021">
 	<uses-sdk android:minSdkVersion="26" android:targetSdkVersion="27" />
 	<application android:label="Consecration 2019"></application>
 	<!-- Note. mfk. 2019-03-17. Added. This supposedly savoid the "java.exe exited with code 2" error. -->
